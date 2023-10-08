@@ -1,6 +1,6 @@
-# DiffCSP++
+# DiffCSP
 
-Official Implementation of Space Group Constrained Crystal Generation (DiffCSP++).
+Implementation codes for submission 3458 (Crystal Structure Prediction by Joint Equivariant Diffusion on Lattices and Fractional Coordinates).
 
 ### Dependencies
 
@@ -17,13 +17,13 @@ pymatgen==2022.9.21
 For the CSP task
 
 ```
-python diffcsp/run.py data=<dataset> model=diffusion_w_spg expname=<expname>
+python diffcsp/run.py data=<dataset> expname=<expname>
 ```
 
 For the Ab Initio Generation task
 
 ```
-python diffcsp/run.py data=<dataset> model=diffusion_w_spg_type expname=<expname>
+python diffcsp/run.py data=<dataset> model=diffusion_w_type expname=<expname>
 ```
 
 The ``<dataset>`` tag can be selected from perov_5, mp_20, mpts_52 and carbon_24.
