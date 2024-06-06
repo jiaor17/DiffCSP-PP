@@ -25,6 +25,8 @@ from diffcsp.common.data_utils import (
 from diffcsp.pl_modules.lattice.crystal_family import CrystalFamily
 from diffcsp.pl_modules.diff_utils import d_log_p_wrapped_normal
 
+from copy import deepcopy as dc
+
 MAX_ATOMIC_NUM=100
 
 
