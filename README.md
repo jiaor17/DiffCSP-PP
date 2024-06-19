@@ -1,6 +1,6 @@
-# DiffCSP++
 
-
+## DiffCSP++
+Official Implementation of Space Group Constrained Crystal Generation (DiffCSP++).
 
 ### Dependencies
 
