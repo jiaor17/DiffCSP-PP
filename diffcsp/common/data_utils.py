@@ -32,6 +32,10 @@ from functools import partial
 import faulthandler
 faulthandler.enable()
 
+def p_umap_check(func, data, *args, **kwargs):
+    result = [func(item, *args, **kwargs) for item in tqdm(data, total=len(data))]
+    return result
+
 
 
 # Tensor of unit cells. Assumes 27 cells in -1, 0, 1 offsets in the x and y dimensions
@@ -693,7 +697,6 @@ def radius_graph_pbc(pos, lengths, angles, natoms, radius, max_num_neighbors_thr
     
     radius_real = torch.repeat_interleave(radius_real, num_atoms_per_image_sqr * num_cells)
 
-    # print(min_dist.min(dim=-1)[0])
     
     # radius_real = radius
     
@@ -1179,16 +1182,16 @@ def preprocess(input_file, num_workers, niggli, primitive, graph_method,
                prop_list, use_space_group = False, tol=0.01):
     df = pd.read_csv(input_file)
 
-    unordered_results = p_umap(
+    unordered_results = p_umap_check(
         process_one,
         [df.iloc[idx] for idx in range(len(df))],
-        [niggli] * len(df),
-        [primitive] * len(df),
-        [graph_method] * len(df),
-        [prop_list] * len(df),
-        [use_space_group] * len(df),
-        [tol] * len(df),
-        num_cpus=num_workers)
+        niggli,
+        primitive,
+        graph_method,
+        prop_list,
+        use_space_group,
+        tol
+    )
 
     mpid_to_results = {result['mp_id']: result for result in unordered_results}
     ordered_results = [mpid_to_results[df.iloc[idx]['material_id']]

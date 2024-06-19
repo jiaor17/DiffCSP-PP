@@ -50,7 +50,7 @@ class CrystDataModule(pl.LightningDataModule):
         self.val_datasets: Optional[Sequence[Dataset]] = None
         self.test_datasets: Optional[Sequence[Dataset]] = None
 
-        self.get_scaler(scaler_path)
+        # self.get_scaler(scaler_path)
 
     def prepare_data(self) -> None:
         # download only
@@ -82,20 +82,20 @@ class CrystDataModule(pl.LightningDataModule):
                 for dataset_cfg in self.datasets.val
             ]
 
-            self.train_dataset.lattice_scaler = self.lattice_scaler
-            self.train_dataset.scaler = self.scaler
-            for val_dataset in self.val_datasets:
-                val_dataset.lattice_scaler = self.lattice_scaler
-                val_dataset.scaler = self.scaler
+            # self.train_dataset.lattice_scaler = self.lattice_scaler
+            # self.train_dataset.scaler = self.scaler
+            # for val_dataset in self.val_datasets:
+            #     val_dataset.lattice_scaler = self.lattice_scaler
+            #     val_dataset.scaler = self.scaler
 
         if stage is None or stage == "test":
             self.test_datasets = [
                 hydra.utils.instantiate(dataset_cfg)
                 for dataset_cfg in self.datasets.test
             ]
-            for test_dataset in self.test_datasets:
-                test_dataset.lattice_scaler = self.lattice_scaler
-                test_dataset.scaler = self.scaler
+            # for test_dataset in self.test_datasets:
+            #     test_dataset.lattice_scaler = self.lattice_scaler
+            #     test_dataset.scaler = self.scaler
 
     def train_dataloader(self, shuffle = True) -> DataLoader:
         return DataLoader(
