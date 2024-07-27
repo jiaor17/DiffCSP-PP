@@ -1,14 +1,11 @@
 ## DiffCSP++
+
 Official Implementation of Space Group Constrained Crystal Generation (DiffCSP++).
 
-### Dependencies
+### Setup
 
 ```
-python==3.8.13
-torch==1.9.0
-torch-geometric==1.7.2
-pytorch_lightning==1.3.8
-pymatgen==2022.9.21
+bash setup/setup.sh
 ```
 
 ### Training
